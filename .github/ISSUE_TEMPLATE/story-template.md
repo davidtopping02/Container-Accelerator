@@ -1,7 +1,7 @@
 ---
-name: "[ Story Title ]"
-about: "[ short story description ]"
-title: ''
+name: Story Template
+about: This is a default template used for user stories
+title: "[Story Template]"
 labels: ''
 assignees: ''
 
