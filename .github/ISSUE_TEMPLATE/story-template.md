@@ -35,6 +35,8 @@ assignees: ''
 - [ ] Review by two peers
 - [ ] Unit tests passed
 - [ ] Documentation Complete
+- [ ] Client's name is not mentioned in code
+- [ ] No secrets stored in plain text
 
 **Tasks**
 - [ ] xxx
