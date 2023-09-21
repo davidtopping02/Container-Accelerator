@@ -1,1 +1,1 @@
-# industrial-team-project
+# Container Accelerator
