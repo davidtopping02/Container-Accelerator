@@ -42,3 +42,9 @@ assignees: ''
 - [ ] xxx
 - [ ] xxx
 - [ ] xxx
+
+**Short Description For Report**
+[Include description here]
+
+**Issues Encountered During Dev**
+[Include issues here]
