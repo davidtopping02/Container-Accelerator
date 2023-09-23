@@ -1,7 +1,7 @@
-variable "region" {
-  description = "The name of the AWS Region"
+variable "region_name" {
+  description = "The name of the AWS Region, region countrys accepted, eg London, Ohio, Tokyo..."
   type        = string
-  default     = "eu-west-1"
+  default     = "London"
 }
 
 variable "name" {
