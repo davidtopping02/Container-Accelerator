@@ -1,2 +1,4 @@
-output/
-__pycache__
+.terraform*
+*tfplan
+*.tfstate
+*.backup
