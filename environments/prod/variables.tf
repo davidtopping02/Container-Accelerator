@@ -10,9 +10,14 @@ variable "name" {
   default     = "container-accelerator-vpc"
 }
 
-
 variable "instance_type" {
   description = "Instance Type"
   type        = string
   default     = "t2.small"
+}
+
+variable "eks_worker_on_demand" {
+  description = "Set eks worker capacity type to ON_DEMAND, otherwise it will be set to SPOT"
+  type        = bool
+  default     = true
 }

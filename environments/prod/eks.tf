@@ -37,8 +37,8 @@ module "eks" {
       max_size     = 2
       desired_size = 1
 
-      instance_types = ["t2.small"]
-      capacity_type  = "SPOT"
+      instance_types = [var.instance_type]
+      capacity_type  = var.eks_worker_on_demand ? "ON_DEMAND" : "SPOT"
 
       tags = {
         ExtraTag = "helloworld"
