@@ -1,7 +1,7 @@
 name: 'Terraform Validator'
 
 on:
-  pull:
+  pull_request:
     branches: [ "main" ]
 
 permissions:
