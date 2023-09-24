@@ -6,7 +6,8 @@ module "vpc" {
   name = var.name
   cidr = "10.123.0.0/16"
 
-  azs = ["eu-west-1a", "eu-west-1b"]
+  # Availability ZoneS
+  azs = slice(data.aws_availability_zones.available.names, 0, var.number_of_availability_zones)
 
   public_subnets  = ["10.123.1.0/24", "10.123.2.0/24"]
   private_subnets = ["10.123.3.0/24", "10.123.4.0/24"]
