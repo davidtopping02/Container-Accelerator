@@ -21,3 +21,9 @@ variable "eks_worker_on_demand" {
   type        = bool
   default     = true
 }
+
+variable "number_of_availability_zones" {
+  description = "Max number of regions availability zones to use"
+  type        = number
+  default     = 2
+}
