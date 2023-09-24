@@ -1,0 +1,38 @@
+name: 'Terraform Validator'
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: production
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout the code
+      uses: Actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      run: |
+        cd environments/prod
+        terraform init
+
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Validate
+      run: |
+        cd environments/prod
+        terraform validate
+
+
