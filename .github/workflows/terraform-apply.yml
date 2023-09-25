@@ -8,7 +8,7 @@ env:
   TF_CLOUD_ORGANIZATION: "GROUP_9_INDUSTRIAL_TEAM_PROJECT"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "container-accelerator"
-  CONFIG_DIRECTORY: "./"
+  CONFIG_DIRECTORY: "./environments/prod/"
 
 jobs:
   terraform:
