@@ -1,0 +1,24 @@
+name: 'Terraform Destroy'
+
+#triggered on the github website or cli
+on: workflow_dispatch
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: production
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    #Terraform is teared down
+    - name: Terraform Destroy
+      run: |
+        cd environments/prod
+        terraform destroy
