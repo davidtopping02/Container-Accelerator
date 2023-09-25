@@ -1,0 +1,32 @@
+# This code was inspired by: https://developer.hashicorp.com/terraform/tutorials/automation/github-actions
+name: "Terraform Teardown"
+
+on:
+  workflow_dispatch:
+
+env:
+  TF_CLOUD_ORGANIZATION: "GROUP_9_INDUSTRIAL_TEAM_PROJECT"
+  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
+  TF_WORKSPACE: "container-accelerator"
+  CONFIG_DIRECTORY: "./environments/prod/"
+
+jobs:
+  terraform:
+    name: "Terraform Teardown"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
+
+      - name: Terraform Cleanup
+        run: |
+          terraform workspace select default
+          terraform workspace delete ${{ env.TF_WORKSPACE }}
