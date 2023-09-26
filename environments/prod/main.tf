@@ -3,8 +3,15 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0"
+      version = "~> 4.18"
     }
+  }
+
+  backend "s3" {
+    bucket         = "terraform-state-group9-container-accelerator"
+    key            = "global/s3/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-state-locking"
   }
 
   required_version = ">= 1.2.0"
