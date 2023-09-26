@@ -27,9 +27,3 @@ variable "number_of_availability_zones" {
   type        = number
   default     = 2
 }
-
-variable "backend_bucket_name" {
-  description = "Name of S3 bucket to use to store terraforms state in"
-  type        = string
-  default     = "terraform-state-group9-container-accelerator"
-}
