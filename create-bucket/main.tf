@@ -1,6 +1,6 @@
 # Create an S3 bucket resource for the state
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "terraform-state-group9-container-accelerator-caydey"
+  bucket = "terraform-state-group9-container-accelerator-USERNAME"
 
   lifecycle {
     prevent_destroy = true
