@@ -4,14 +4,14 @@ module "vpc" {
   version = "~> 4.0"
 
   name = var.name
-  cidr = "10.123.0.0/16"
+  cidr = var.subnet_mask
 
   # Availability ZoneS
-  azs = slice(data.aws_availability_zones.available.names, 0, var.number_of_availability_zones)
+  azs = local.azs
 
-  public_subnets  = ["10.123.1.0/24", "10.123.2.0/24"]
-  private_subnets = ["10.123.3.0/24", "10.123.4.0/24"]
-  intra_subnets   = ["10.123.5.0/24", "10.123.6.0/24"]
+  private_subnets = [for k, v in local.azs : cidrsubnet(var.subnet_mask, 4, k)]
+  public_subnets  = [for k, v in local.azs : cidrsubnet(var.subnet_mask, 8, k + 48)]
+  intra_subnets   = [for k, v in local.azs : cidrsubnet(var.subnet_mask, 8, k + 52)]
 
   enable_nat_gateway = true
 

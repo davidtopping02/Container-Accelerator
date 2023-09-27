@@ -22,8 +22,8 @@ variable "eks_worker_on_demand" {
   default     = true
 }
 
-variable "number_of_availability_zones" {
-  description = "Max number of regions availability zones to use"
-  type        = number
-  default     = 2
+variable "subnet_mask" {
+  description = "VPC CIDR range"
+  type        = string
+  default     = "10.0.0.0/16"
 }
