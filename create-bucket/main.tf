@@ -1,17 +1,6 @@
-# Configure Terraform backend to store state in an S3 bucket
-terraform {
-  backend "s3" {
-    bucket         = "terraform-state-group9-container-accelerator"
-    key            = "global/s3/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-state-locking"
-  }
-}
-
-
 # Create an S3 bucket resource for the state
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "terraform-state-group9-container-accelerator"
+  bucket = "terraform-state-group9-container-accelerator-USERNAME"
 
   lifecycle {
     prevent_destroy = true
@@ -20,7 +9,6 @@ resource "aws_s3_bucket" "terraform_state" {
 
 # Configure server-side encryption for the S3 bucket
 resource "aws_s3_bucket_server_side_encryption_configuration" "server_side_encryption" {
-
   bucket = aws_s3_bucket.terraform_state.id
 
   rule {
