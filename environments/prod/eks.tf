@@ -33,9 +33,9 @@ module "eks" {
 
   eks_managed_node_groups = {
     cluster-wg = { # worker group, "cluster-wg" just a string
-      min_size     = 1
-      max_size     = 2
-      desired_size = 1
+      min_size     = var.min_size
+      max_size     = var.max_size
+      desired_size = var.desired_size
 
       instance_types = [var.instance_type]
       capacity_type  = var.eks_worker_on_demand ? "ON_DEMAND" : "SPOT"
