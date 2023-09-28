@@ -16,6 +16,22 @@ variable "instance_type" {
   default     = "t2.small"
 }
 
+variable "min_size" {
+  description = "Minimum capacity of cluster"
+  type = number
+  default = 1
+}
+variable "max_size" {
+    description = "Maximum capacity of cluster"
+  type = number
+  default = 2
+}
+variable "desired_size" {
+  description = "Desired capacity of cluster"
+  type = number
+  default = 1
+}
+
 variable "eks_worker_on_demand" {
   description = "Set eks worker capacity type to ON_DEMAND, otherwise it will be set to SPOT"
   type        = bool
