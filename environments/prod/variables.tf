@@ -1,5 +1,5 @@
-variable "region_name" {
-  description = "The name of the AWS Region, region countries accepted, eg London, Ohio, Tokyo..."
+variable "region" {
+  description = "The name of the AWS Region"
   type        = string
   default     = "us-east-1"
 }
@@ -18,18 +18,18 @@ variable "instance_type" {
 
 variable "min_size" {
   description = "Minimum capacity of cluster"
-  type = number
-  default = 1
+  type        = number
+  default     = 1
 }
 variable "max_size" {
-    description = "Maximum capacity of cluster"
-  type = number
-  default = 2
+  description = "Maximum capacity of cluster"
+  type        = number
+  default     = 2
 }
 variable "desired_size" {
   description = "Desired capacity of cluster"
-  type = number
-  default = 1
+  type        = number
+  default     = 1
 }
 
 variable "eks_worker_on_demand" {
