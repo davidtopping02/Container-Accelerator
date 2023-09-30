@@ -17,29 +17,37 @@ variable "instance_type" {
 }
 
 variable "min_size" {
-  description = "Minimum capacity of cluster"
-  type        = number
-  default     = 1
-}
-variable "max_size" {
-  description = "Maximum capacity of cluster"
-  type        = number
-  default     = 2
-}
-variable "desired_size" {
-  description = "Desired capacity of cluster"
+  description = "Minimum capacity of single worker instance"
   type        = number
   default     = 1
 }
 
-variable "eks_worker_on_demand" {
-  description = "Set eks worker capacity type to ON_DEMAND, otherwise it will be set to SPOT"
+variable "max_size" {
+  description = "Maximum capacity of single worker instance"
+  type        = number
+  default     = 2
+}
+
+variable "desired_size" {
+  description = "Desired capacity of single worker instance"
+  type        = number
+  default     = 1
+}
+
+variable "eks_workers_on_demand" {
+  description = "set EKS worker capacity type to ON_DEMAND, otherwise it will be set to SPOT"
   type        = bool
   default     = true
+}
+
+variable "eks_worker_instances" {
+  description = "Number of worker instances to create"
+  type        = number
+  default     = 1
 }
 
 variable "subnet_mask" {
   description = "VPC CIDR range"
   type        = string
-  default     = "10.0.0.0/16"
+  default     = "172.20.0.0/16"
 }
