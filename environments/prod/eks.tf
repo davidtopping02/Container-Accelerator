@@ -24,22 +24,19 @@ module "eks" {
 
 
   # EKS Managed Node Group(s)
-  eks_managed_node_group_defaults = { # defaults if not overwrote by "cluster-wg"
-    ami_type       = "AL2_x86_64"
-    instance_types = ["m5.large"]
-
-    attach_cluster_primary_security_group = true
-  }
-
   eks_managed_node_groups = {
-    cluster-wg = { # worker group, "cluster-wg" just a string
+    for i in range(1, var.eks_worker_instances + 1) : "wg-group-${i}" => {
+      ami_type = "AL2_x86_64"
+
       min_size     = var.min_size
       max_size     = var.max_size
       desired_size = var.desired_size
 
-      instance_types = [var.instance_type]
-      capacity_type  = var.eks_worker_on_demand ? "ON_DEMAND" : "SPOT"
+      instance_type = var.instance_type
+      capacity_type = var.eks_workers_on_demand ? "ON_DEMAND" : "SPOT"
 
+
+      attach_cluster_primary_security_group = true
       tags = {
         ExtraTag = "helloworld"
       }
