@@ -7,7 +7,7 @@ variable "region" {
 variable "name" {
   description = "Name of Virtual Private Cloud"
   type        = string
-  default     = "container-accelerator-vpc"
+  default     = "3-container-accelerator-vpc"
 }
 
 variable "instance_type" {

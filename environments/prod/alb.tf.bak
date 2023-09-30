@@ -1,0 +1,124 @@
+
+resource "aws_security_group" "remote_access" {
+  name_prefix = "${var.name}-remote-access"
+  description = "Allow remote SSH access"
+  vpc_id      = module.vpc.vpc_id
+
+  ingress {
+    description = "HTTP access"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+}
+
+
+resource "aws_eip" "this" {
+  count = length(local.azs)
+}
+
+
+
+module "lb_controller_helm" {
+  source = "lablabs/eks-load-balancer-controller/aws"
+
+  enabled           = true
+  argo_enabled      = false
+  argo_helm_enabled = false
+
+  cluster_name                     = module.eks.cluster_id
+  cluster_identity_oidc_issuer     = module.eks.oidc_provider
+  cluster_identity_oidc_issuer_arn = module.eks.oidc_provider_arn
+
+  helm_release_name = "aws-lbc-helm"
+  namespace         = "aws-lb-controller-helm"
+
+  values = yamlencode({
+    "podLabels" : {
+      "app" : "aws-lbc-helm"
+    }
+  })
+
+  helm_timeout = 240
+  helm_wait    = true
+}
+
+module "eks-kubeconfig" {
+  source  = "hyperbadger/eks-kubeconfig/aws"
+  version = "1.0.0"
+
+  depends_on = [module.eks]
+  cluster_id = module.eks.cluster_id
+}
+
+provider "kubernetes" {
+  host                   = module.eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    command     = "aws"
+    # This requires the awscli to be installed locally where Terraform is executed
+    args = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
+  }
+}
+resource "kubernetes_ingress_v1" "example_ingress" {
+  metadata {
+    name = "example-ingress"
+  }
+
+  spec {
+    default_backend {
+      service {
+        name = "myapp-1"
+        port {
+          number = 8080
+        }
+      }
+    }
+
+    rule {
+      http {
+        path {
+          backend {
+            service {
+              name = "myapp-1"
+              port {
+                number = 8080
+              }
+            }
+          }
+
+          path = "/app1/*"
+        }
+
+        path {
+          backend {
+            service {
+              name = "myapp-2"
+              port {
+                number = 8080
+              }
+            }
+          }
+
+          path = "/app2/*"
+        }
+      }
+    }
+
+    tls {
+      secret_name = "tls-secret"
+    }
+  }
+}
+
