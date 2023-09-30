@@ -5,12 +5,15 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.18 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | >= 2.6.0 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~> 2.23.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 4.18 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | ~> 2.23.0 |
 
 ## Modules
 
@@ -23,7 +26,7 @@
 
 | Name | Type |
 |------|------|
-| [aws_eip.nat](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip) | resource |
+| [kubernetes_service_v1.example](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service_v1) | resource |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 
 ## Inputs
@@ -36,9 +39,9 @@
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance Type | `string` | `"t2.small"` | no |
 | <a name="input_max_size"></a> [max\_size](#input\_max\_size) | Maximum capacity of single worker instance | `number` | `2` | no |
 | <a name="input_min_size"></a> [min\_size](#input\_min\_size) | Minimum capacity of single worker instance | `number` | `1` | no |
-| <a name="input_name"></a> [name](#input\_name) | Name of Virtual Private Cloud | `string` | `"container-accelerator-vpc"` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of Virtual Private Cloud | `string` | `"3-container-accelerator-vpc"` | no |
 | <a name="input_region"></a> [region](#input\_region) | The name of the AWS Region | `string` | `"us-east-1"` | no |
-| <a name="input_subnet_mask"></a> [subnet\_mask](#input\_subnet\_mask) | VPC CIDR range | `string` | `"10.0.0.0/16"` | no |
+| <a name="input_subnet_mask"></a> [subnet\_mask](#input\_subnet\_mask) | VPC CIDR range | `string` | `"172.20.0.0/16"` | no |
 
 ## Outputs
 
@@ -47,5 +50,6 @@
 | <a name="output_cluster_endpoint"></a> [cluster\_endpoint](#output\_cluster\_endpoint) | Endpoint for EKS control plane |
 | <a name="output_cluster_name"></a> [cluster\_name](#output\_cluster\_name) | Kubernetes Cluster Name |
 | <a name="output_cluster_security_group_id"></a> [cluster\_security\_group\_id](#output\_cluster\_security\_group\_id) | Security group ids attached to the cluster control plane |
+| <a name="output_load_balancer_hostname"></a> [load\_balancer\_hostname](#output\_load\_balancer\_hostname) | n/a |
 | <a name="output_region"></a> [region](#output\_region) | AWS region |
 <!-- END_TF_DOCS -->
