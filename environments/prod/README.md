@@ -23,23 +23,29 @@
 
 | Name | Type |
 |------|------|
+| [aws_eip.nat](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip) | resource |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_country_to_region"></a> [country\_to\_region](#input\_country\_to\_region) | A map of countries to AWS regions | `map(string)` | <pre>{<br>  "Bahrain": "me-south-1",<br>  "California": "us-west-1",<br>  "Cape Town": "af-south-1",<br>  "Central": "ca-central-1",<br>  "Frankfurt": "eu-central-1",<br>  "Hong Kong": "ap-east-1",<br>  "Hyderabad": "ap-south-2",<br>  "Ireland": "eu-west-1",<br>  "Jakarta": "ap-southeast-3",<br>  "London": "eu-west-2",<br>  "Melbourne": "ap-southeast-4",<br>  "Milan": "eu-south-1",<br>  "Mumbai": "ap-south-1",<br>  "Ohio": "us-east-2",<br>  "Oregon": "us-west-2",<br>  "Osaka": "ap-northeast-3",<br>  "Paris": "eu-west-3",<br>  "Sao Paulo": "sa-east-1",<br>  "Seoul": "ap-northeast-2",<br>  "Singapore": "ap-southeast-1",<br>  "Spain": "eu-south-2",<br>  "Stockholm": "eu-north-1",<br>  "Sydney": "ap-southeast-2",<br>  "Tel Aviv": "il-central-1",<br>  "Tokyo": "ap-northeast-1",<br>  "UAE": "me-central-1",<br>  "Virginia": "us-east-1",<br>  "Zurich": "eu-central-2"<br>}</pre> | no |
-| <a name="input_desired_size"></a> [desired\_size](#input\_desired\_size) | Desired capacity of cluster | `number` | `1` | no |
-| <a name="input_eks_worker_on_demand"></a> [eks\_worker\_on\_demand](#input\_eks\_worker\_on\_demand) | Set eks worker capacity type to ON\_DEMAND, otherwise it will be set to SPOT | `bool` | `true` | no |
+| <a name="input_desired_size"></a> [desired\_size](#input\_desired\_size) | Desired capacity of single worker instance | `number` | `1` | no |
+| <a name="input_eks_worker_instances"></a> [eks\_worker\_instances](#input\_eks\_worker\_instances) | Number of worker instances to create | `number` | `1` | no |
+| <a name="input_eks_workers_on_demand"></a> [eks\_workers\_on\_demand](#input\_eks\_workers\_on\_demand) | set EKS worker capacity type to ON\_DEMAND, otherwise it will be set to SPOT | `bool` | `true` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance Type | `string` | `"t2.small"` | no |
-| <a name="input_max_size"></a> [max\_size](#input\_max\_size) | Maximum capacity of cluster | `number` | `2` | no |
-| <a name="input_min_size"></a> [min\_size](#input\_min\_size) | Minimum capacity of cluster | `number` | `1` | no |
+| <a name="input_max_size"></a> [max\_size](#input\_max\_size) | Maximum capacity of single worker instance | `number` | `2` | no |
+| <a name="input_min_size"></a> [min\_size](#input\_min\_size) | Minimum capacity of single worker instance | `number` | `1` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of Virtual Private Cloud | `string` | `"container-accelerator-vpc"` | no |
-| <a name="input_region_name"></a> [region\_name](#input\_region\_name) | The name of the AWS Region, region countries accepted, eg London, Ohio, Tokyo... | `string` | `"us-east-1"` | no |
+| <a name="input_region"></a> [region](#input\_region) | The name of the AWS Region | `string` | `"us-east-1"` | no |
 | <a name="input_subnet_mask"></a> [subnet\_mask](#input\_subnet\_mask) | VPC CIDR range | `string` | `"10.0.0.0/16"` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_cluster_endpoint"></a> [cluster\_endpoint](#output\_cluster\_endpoint) | Endpoint for EKS control plane |
+| <a name="output_cluster_name"></a> [cluster\_name](#output\_cluster\_name) | Kubernetes Cluster Name |
+| <a name="output_cluster_security_group_id"></a> [cluster\_security\_group\_id](#output\_cluster\_security\_group\_id) | Security group ids attached to the cluster control plane |
+| <a name="output_region"></a> [region](#output\_region) | AWS region |
 <!-- END_TF_DOCS -->
