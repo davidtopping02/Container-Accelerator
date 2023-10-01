@@ -5,6 +5,14 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.18"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.23.0"
+    }
+    helm = {
+      source  = "hashicorp/helm"
+      version = ">= 2.6.0"
+    }
   }
 
   backend "s3" {
@@ -16,3 +24,4 @@ terraform {
 
   required_version = ">= 1.2.0"
 }
+
