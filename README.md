@@ -4,8 +4,8 @@ A repository to streamline the deploymeny of Infrastructure as Code to AWS
 
 ## Modifying the configuration file
 - Clone this repository `git clone https://github.com/davidtopping02/container-accelerator`
-- Modify the configuration file located at `environments/prod/variables.tf`
-- Visit the [Terraform README](environments/prod#inputs) for further information about the configuration file
+- Modify the configuration file located at `terraform/variables.tf`
+- Visit the [Terraform README](terraform#inputs) for further information about the configuration file
 - Once you have modified the `variables.tf` file, commit it to the repository in a new branch and make a pull request
 - A GitHub workflow will run automatically on every pull request to validate that the terraform syntax is correct
 - Merge the pull request

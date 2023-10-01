@@ -30,13 +30,13 @@ jobs:
 
     - name: Terraform Init
       run: |
-        cd environments/prod
+        cd ./terraform/
         terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Validate
       run: |
-        cd environments/prod
+        cd ./terraform/
         terraform validate
 
 
