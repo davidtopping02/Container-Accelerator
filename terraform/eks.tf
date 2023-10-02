@@ -34,8 +34,8 @@ module "eks" {
       max_size     = var.max_size
       desired_size = var.desired_size
 
-      instance_type = "t2.tiny"
-      capacity_type = var.eks_workers_on_demand ? "ON_DEMAND" : "SPOT"
+      instance_types = [var.instance_type]
+      capacity_type  = var.eks_workers_on_demand ? "ON_DEMAND" : "SPOT"
 
 
       attach_cluster_primary_security_group = true
