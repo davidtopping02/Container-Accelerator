@@ -13,7 +13,7 @@ variable "name" {
 variable "instance_type" {
   description = "Instance Type"
   type        = string
-  default     = "t2.micro"
+  default     = "t3.medium"
 }
 
 variable "min_size" {
