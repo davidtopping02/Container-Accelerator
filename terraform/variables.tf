@@ -13,7 +13,7 @@ variable "name" {
 variable "instance_type" {
   description = "Instance Type"
   type        = string
-  default     = "t2.micro"
+  default     = "t3.medium"
 }
 
 variable "min_size" {
@@ -25,7 +25,7 @@ variable "min_size" {
 variable "max_size" {
   description = "Maximum capacity of single worker instance"
   type        = number
-  default     = 4
+  default     = 2
 }
 
 variable "desired_size" {
