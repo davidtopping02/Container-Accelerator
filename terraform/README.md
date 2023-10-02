@@ -34,7 +34,7 @@
 | <a name="input_desired_size"></a> [desired\_size](#input\_desired\_size) | Desired capacity of single worker instance | `number` | `1` | no |
 | <a name="input_eks_worker_instances"></a> [eks\_worker\_instances](#input\_eks\_worker\_instances) | Number of worker instances to create | `number` | `1` | no |
 | <a name="input_eks_workers_on_demand"></a> [eks\_workers\_on\_demand](#input\_eks\_workers\_on\_demand) | set EKS worker capacity type to ON\_DEMAND, otherwise it will be set to SPOT | `bool` | `true` | no |
-| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance Type | `string` | `"t2.micro"` | no |
+| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance Type | `string` | `"t3.medium"` | no |
 | <a name="input_max_size"></a> [max\_size](#input\_max\_size) | Maximum capacity of single worker instance | `number` | `4` | no |
 | <a name="input_min_size"></a> [min\_size](#input\_min\_size) | Minimum capacity of single worker instance | `number` | `1` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of Virtual Private Cloud | `string` | `"container-accelerator-vpc"` | no |
