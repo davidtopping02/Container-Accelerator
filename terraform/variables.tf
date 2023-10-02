@@ -13,7 +13,7 @@ variable "name" {
 variable "instance_type" {
   description = "Instance Type"
   type        = string
-  default     = "t3.medium"
+  default     = "t2.micro"
 }
 
 variable "min_size" {
@@ -31,7 +31,7 @@ variable "max_size" {
 variable "desired_size" {
   description = "Desired capacity of single worker instance"
   type        = number
-  default     = 1
+  default     = 2
 }
 
 variable "eks_workers_on_demand" {

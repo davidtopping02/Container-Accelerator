@@ -31,7 +31,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_desired_size"></a> [desired\_size](#input\_desired\_size) | Desired capacity of single worker instance | `number` | `1` | no |
+| <a name="input_desired_size"></a> [desired\_size](#input\_desired\_size) | Desired capacity of single worker instance | `number` | `2` | no |
 | <a name="input_eks_worker_instances"></a> [eks\_worker\_instances](#input\_eks\_worker\_instances) | Number of worker instances to create | `number` | `1` | no |
 | <a name="input_eks_workers_on_demand"></a> [eks\_workers\_on\_demand](#input\_eks\_workers\_on\_demand) | set EKS worker capacity type to ON\_DEMAND, otherwise it will be set to SPOT | `bool` | `true` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance Type | `string` | `"t3.medium"` | no |
