@@ -34,7 +34,7 @@ module "eks" {
       max_size     = var.max_size
       desired_size = var.desired_size
 
-      instance_type = var.instance_type
+      instance_type = "t2.tiny"
       capacity_type = var.eks_workers_on_demand ? "ON_DEMAND" : "SPOT"
 
 
