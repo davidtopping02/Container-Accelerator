@@ -1,4 +1,4 @@
-name: Terraform Apply
+name: Terraform Create Bucket
 
 on:
   workflow_dispatch:
