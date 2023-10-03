@@ -51,3 +51,23 @@ variable "subnet_mask" {
   type        = string
   default     = "172.20.0.0/16"
 }
+
+# Global Tags
+
+variable "environment" {
+  description = "Environment of deployment"
+  type        = string
+  default     = "Test"
+}
+
+variable "owner" {
+  description = "Email address of creator of deployment"
+  type        = string
+  default     = "test@example.com"
+}
+
+variable "cost_centre_code" {
+  description = "Cost centre code of business associated"
+  type        = number
+  default     = 0
+}
