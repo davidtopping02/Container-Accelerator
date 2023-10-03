@@ -1,0 +1,46 @@
+name: Terraform Apply
+
+on:
+  workflow_dispatch:
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  terraform:
+    name: Plan / Apply
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: "./create-bucket/"
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Use Terraform 1.5.7
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.7
+
+    - name: Terraform Init
+      id: init
+      run: terraform init
+
+    - name: Terraform Apply in create-bucket
+      run: terraform apply -auto-approve -input=false
+
+      # Change to the directory where cloud infrastructure is defined
+    - name: Change Working Directory to Another Directory
+      run: cd ../terraform/  
+
+    - name: Terraform Init in /terraform
+      id: init_another
+      run: terraform init
+      continue-on-error: true
+
+    - name: Terraform Apply in /terraform
+      run: terraform apply -auto-approve -input=false
