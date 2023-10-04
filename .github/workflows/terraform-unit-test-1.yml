@@ -35,13 +35,17 @@ jobs:
         terraform init
 
     - name: Terraform Plan
-      run: terraform plan -out 'tfplan'
+      run: |
+        cd ./terraform/
+        terraform plan -out 'tfplan'
 
     - name: Terraform Show
-      run: terraform show -json 'tfplan' > tf.json
+      run: |
+        cd ./terraform/
+        terraform show -json 'tfplan' > tf.json
 
     - name: Unit Test 1
       run: |
-        cd ../.testing/
+        cd ./.testing/
         uses: actions/setup-python@v4
         python unit-test-1.py
