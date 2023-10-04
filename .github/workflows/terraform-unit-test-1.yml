@@ -1,0 +1,51 @@
+name: 'Unit Test 1'
+
+#on:
+#  pull_request:
+#    branches: [ "main" ]
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: production
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout the code
+      uses: Actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      id: init
+      run: |
+        cd ./terraform/
+        terraform init
+
+    - name: Terraform Plan
+      run: |
+        cd ./terraform/
+        terraform plan -out 'tfplan'
+
+    - name: Terraform Show
+      run: |
+        cd ./terraform/
+        terraform show -json 'tfplan' > tf.json
+
+    - name: Unit Test 1
+      run: |
+        cd ./.testing/
+        uses: actions/setup-python@v4
+        python unit-test-1.py
