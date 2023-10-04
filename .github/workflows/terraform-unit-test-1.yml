@@ -28,19 +28,14 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
-    - name: Terraform Init
+    - name: Json Setup
       run: |
         cd ./terraform/
         terraform plan -out 'tfplan'
-
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Validate
-      run: |
-        cd ./terraform/
         terraform show -json 'tfplan' > tf.json
 
-      - name: Unit Test 1
-        run: |
-          cd ./.testing/
-          python unit-test-1.py
-      #import python?
+    - name: Unit Test 1
+      run: |
+        cd ../.testing/
+        uses: actions/setup-python@v4
+        python unit-test-1.py
