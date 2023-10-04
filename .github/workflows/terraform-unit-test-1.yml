@@ -28,12 +28,17 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
-    - name: Json Setup
+    - name: Terraform Init
+      id: init
       run: |
         cd ./terraform/
         terraform init
-        terraform plan -out 'tfplan'
-        terraform show -json 'tfplan' > tf.json
+
+    - name: Terraform Plan
+      run: terraform plan -out 'tfplan'
+
+    - name: Terraform Show
+      run: terraform show -json 'tfplan' > tf.json
 
     - name: Unit Test 1
       run: |
