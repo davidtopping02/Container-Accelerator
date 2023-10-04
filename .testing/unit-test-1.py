@@ -1,8 +1,10 @@
 import json
 import sys
 
+#Unit test to confirm all variables are correct
+
 #open file and split json into array
-f = open("tf.json", "r")
+f = open("../terraform/tf.json", "r")
 vars = json.load(f)
 
 def main():
