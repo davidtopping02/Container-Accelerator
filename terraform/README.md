@@ -31,13 +31,16 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_cost_centre_code"></a> [cost\_centre\_code](#input\_cost\_centre\_code) | Cost centre code of business associated | `number` | `0` | no |
 | <a name="input_desired_size"></a> [desired\_size](#input\_desired\_size) | Desired capacity of single worker instance | `number` | `2` | no |
 | <a name="input_eks_worker_instances"></a> [eks\_worker\_instances](#input\_eks\_worker\_instances) | Number of worker instances to create | `number` | `1` | no |
 | <a name="input_eks_workers_on_demand"></a> [eks\_workers\_on\_demand](#input\_eks\_workers\_on\_demand) | set EKS worker capacity type to ON\_DEMAND, otherwise it will be set to SPOT | `bool` | `true` | no |
+| <a name="input_environment"></a> [environment](#input\_environment) | Environment of deployment | `string` | `"Test"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance Type | `string` | `"t2.medium"` | no |
 | <a name="input_max_size"></a> [max\_size](#input\_max\_size) | Maximum capacity of single worker instance | `number` | `4` | no |
 | <a name="input_min_size"></a> [min\_size](#input\_min\_size) | Minimum capacity of single worker instance | `number` | `1` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of Virtual Private Cloud | `string` | `"container-accelerator-vpc"` | no |
+| <a name="input_owner"></a> [owner](#input\_owner) | Email address of creator of deployment | `string` | `"test@example.com"` | no |
 | <a name="input_region"></a> [region](#input\_region) | The name of the AWS Region | `string` | `"us-east-1"` | no |
 | <a name="input_subnet_mask"></a> [subnet\_mask](#input\_subnet\_mask) | VPC CIDR range | `string` | `"172.20.0.0/16"` | no |
 
