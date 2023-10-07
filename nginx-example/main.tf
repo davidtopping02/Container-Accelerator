@@ -1,5 +1,5 @@
 provider "kubernetes" {
-  # Assuming you're using a kubeconfig file for authentication. Adjust accordingly.
+  # kubeconfig file for authentication
   config_path = "~/.kube/config"
 }
 
@@ -53,6 +53,7 @@ resource "kubernetes_service" "nginx" {
   }
 }
 
+# Display cluster ip address on terraform apply
 output "nginx_service" {
   value = kubernetes_service.nginx.status.0.load_balancer.0.ingress.0.ip
 }
