@@ -1,18 +1,22 @@
 # Elastic kubernetes module
 module "eks" {
+  # Module version information
   source  = "terraform-aws-modules/eks/aws"
   version = "19.16.0"
 
   cluster_name = var.name
+  # Specify the vpc that this resource belongs to
+  vpc_id = module.vpc.vpc_id
 
+  # Set public and private subnets
   subnet_ids               = module.vpc.private_subnets
-  vpc_id                   = module.vpc.vpc_id
   control_plane_subnet_ids = module.vpc.intra_subnets
 
+  # Allow endpoint access
   cluster_endpoint_public_access  = true
   cluster_endpoint_private_access = true
 
-
+  # EKS addons
   cluster_addons = {
     coredns = {
       most_recent = true
@@ -35,16 +39,14 @@ module "eks" {
       desired_size = var.desired_size
 
       instance_types = [var.instance_type]
-      capacity_type  = var.eks_workers_on_demand ? "ON_DEMAND" : "SPOT"
 
+      capacity_type = var.eks_workers_on_demand ? "ON_DEMAND" : "SPOT"
 
       attach_cluster_primary_security_group = true
-      tags = {
-        ExtraTag = "helloworld"
-      }
     }
   }
 
+  # Add tags
   tags = {
     Example = var.name
   }

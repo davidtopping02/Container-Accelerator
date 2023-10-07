@@ -52,8 +52,7 @@ variable "subnet_mask" {
   default     = "172.20.0.0/16"
 }
 
-# Global Tags
-
+## Global Tags ##
 variable "environment" {
   description = "Environment of deployment"
   type        = string
